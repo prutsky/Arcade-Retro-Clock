@@ -53,7 +53,7 @@ import random
 import string
 from datetime import datetime, timedelta
 from random import randint
-import unicornhat as unicorn
+import unicornhathd as unicorn
 import argparse
 import gc
 import copy
@@ -417,7 +417,7 @@ class Sprite(object):
           oldh = h - modifier
           #print ("Scroll:",self.width, self.height, self.r, self.g, self.b,h,v)
           #self.Erase(oldh,v)
-          unicorn.set_pixels(Buffer)
+          unicorn.shade_pixels(Buffer)
         #draw new sprite
         self.Display(h,v)
         unicorn.show()
@@ -435,7 +435,7 @@ class Sprite(object):
         if count >= 1:
           oldv = v - modifier
           #self.Erase(h,oldv)
-          unicorn.set_pixels(Buffer)
+          unicorn.shade_pixels(Buffer)
         #draw new sprite
         self.Display(h,v)
         unicorn.show()
@@ -556,7 +556,7 @@ class AnimatedSprite(object):
           #print ("Scroll:",self.width, self.height, self.r, self.g, self.b,h,v)
           #self.Erase(oldh,v,oldf)
         #draw new sprite
-        unicorn.set_pixels(Buffer)
+        unicorn.shade_pixels(Buffer)
         self.Display(h,v,f)
         time.sleep(delay)
 
@@ -606,7 +606,7 @@ class AnimatedSprite(object):
             oldf = self.frames
           #print ("Erasing Frame: ", oldf, " hv: ",h,v)
           #self.Erase(h,v,oldf)
-          unicorn.set_pixels(Buffer)
+          unicorn.shade_pixels(Buffer)
             
           #draw new sprite
           #print ("Display Frame: ", f, " hv: ",h,v)
@@ -635,13 +635,13 @@ class AnimatedSprite(object):
         self.Display(h,v,f)
         unicorn.show()
         time.sleep(delay)
-        unicorn.set_pixels(Buffer)
+        unicorn.shade_pixels(Buffer)
     else:  
       for f in range (0,self.frames+1):
         self.Display(h,v,(self.frames-f))
         unicorn.show()
         time.sleep(delay)
-        unicorn.set_pixels(Buffer)
+        unicorn.shade_pixels(Buffer)
       
       
       
@@ -753,7 +753,7 @@ class ColorAnimatedSprite(object):
         if count >= 1:
           oldh = h - modifier
         #draw new sprite
-        unicorn.set_pixels(Buffer)
+        unicorn.shade_pixels(Buffer)
         self.Display(h,v)
         time.sleep(delay)
 
@@ -786,7 +786,7 @@ class ColorAnimatedSprite(object):
 
         for f in range (0, self.frames+1):
           #erase old sprite
-          unicorn.set_pixels(Buffer)
+          unicorn.shade_pixels(Buffer)
 
           #draw new sprite
          #print ("CAS - SWF - currentframe: ",self.currentframe)
@@ -842,7 +842,7 @@ class ColorAnimatedSprite(object):
     if (direction == 'forward'):
       for f in range (0,self.frames):
         #erase old sprite
-        unicorn.set_pixels(Buffer)
+        unicorn.shade_pixels(Buffer)
         #draw new sprite
        #print ("CAS - Animate - currentframe: ",self.currentframe)
         self.Display(h,v)
@@ -859,7 +859,7 @@ class ColorAnimatedSprite(object):
     else:  
       for f in range (0,self.frames+1):
         #erase old sprite
-        unicorn.set_pixels(Buffer)
+        unicorn.shade_pixels(Buffer)
         #draw new sprite
         #print ("CAS - Animate - currentframe: ",self.currentframe)
         self.Display(h,v)
@@ -10116,7 +10116,7 @@ def PlayDotZerk():
 
         buffer = unicorn.get_pixels()
         HumanExplosion.Animate(Human.h-1,Human.v-1,'forward',0.025)
-        unicorn.set_pixels(buffer)
+        unicorn.shade_pixels(buffer)
         Human.Erase()
         moves=0
         
@@ -10174,7 +10174,7 @@ def ScrollScreenScrollBanner(message,r,g,b,direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10184,7 +10184,7 @@ def ScrollScreenScrollBanner(message,r,g,b,direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10192,7 +10192,7 @@ def ScrollScreenScrollBanner(message,r,g,b,direction,speed):
     for x in range(0,8):
       del ScreenCap[7]
       ScreenCap.insert(0,EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10202,7 +10202,7 @@ def ScrollScreenScrollBanner(message,r,g,b,direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10224,7 +10224,7 @@ def ShowAllAnimations(speed):
   for x in range(0,8):
     del ScreenCap[0]
     ScreenCap.append(EmptyCap[0])
-    unicorn.set_pixels(ScreenCap)
+    unicorn.shade_pixels(ScreenCap)
     unicorn.show()
     time.sleep(speed)
 
@@ -10305,7 +10305,7 @@ def ShowAllAnimations(speed):
   for x in range(0,8):
     del ScreenCap[-1]
     ScreenCap.insert(0,Buffer[7-x])
-    unicorn.set_pixels(ScreenCap)
+    unicorn.shade_pixels(ScreenCap)
     unicorn.show()
     time.sleep(speed)
 
@@ -10323,7 +10323,7 @@ def ShowLongIntro(speed):
   for x in range(0,8):
     del ScreenCap[0]
     ScreenCap.append(EmptyCap[0])
-    unicorn.set_pixels(ScreenCap)
+    unicorn.shade_pixels(ScreenCap)
     unicorn.show()
     time.sleep(speed)
 
@@ -10378,7 +10378,7 @@ def ShowLongIntro(speed):
   for x in range(0,8):
     del ScreenCap[-1]
     ScreenCap.insert(0,Buffer[7-x])
-    unicorn.set_pixels(ScreenCap)
+    unicorn.shade_pixels(ScreenCap)
     unicorn.show()
     time.sleep(speed)
 
@@ -10400,7 +10400,7 @@ def ScrollScreenShowFrogTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10410,7 +10410,7 @@ def ScrollScreenShowFrogTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10418,7 +10418,7 @@ def ScrollScreenShowFrogTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[7]
       ScreenCap.insert(0,EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10428,7 +10428,7 @@ def ScrollScreenShowFrogTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10473,7 +10473,7 @@ def ScrollScreenShowChickenWormTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10483,7 +10483,7 @@ def ScrollScreenShowChickenWormTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10491,7 +10491,7 @@ def ScrollScreenShowChickenWormTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[7]
       ScreenCap.insert(0,EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10501,7 +10501,7 @@ def ScrollScreenShowChickenWormTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10721,7 +10721,7 @@ def ScrollScreenShowDotZerkRobotTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10732,7 +10732,7 @@ def ScrollScreenShowDotZerkRobotTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10740,7 +10740,7 @@ def ScrollScreenShowDotZerkRobotTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[7]
       ScreenCap.insert(0,EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10750,7 +10750,7 @@ def ScrollScreenShowDotZerkRobotTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
       
@@ -10790,13 +10790,13 @@ def ShowDropShip(h,v,action,speed):
   
   if (action == 'pickup'):
     for y in range(-8,v-3):
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
     
     DropShip.Animate(h-2,y+1,'forward',speed)
     DropShip.Animate(h-2,y+1,'forward',speed)
@@ -10811,20 +10811,20 @@ def ShowDropShip(h,v,action,speed):
     print("Sleeping")
     for y in range(v-3,-10,-1):
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
   else:
     for y in range(-8,v-3):
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer2)
+      unicorn.shade_pixels(buffer2)
 
     DropShip.Animate(h-2,y+1,'forward',speed)
     DropShip.Animate(h-2,y+1,'forward',speed)
@@ -10839,11 +10839,11 @@ def ShowDropShip(h,v,action,speed):
     
     for y in range(v-3,-10,-1):
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
       DropShip.Animate(h-2,y,'forward',speed)
-      unicorn.set_pixels(buffer1)
+      unicorn.shade_pixels(buffer1)
 
 
 
@@ -10860,7 +10860,7 @@ def ScrollScreenShowWormsTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10871,7 +10871,7 @@ def ScrollScreenShowWormsTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10892,7 +10892,7 @@ def ScrollScreenShowSpaceInvaderTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10903,7 +10903,7 @@ def ScrollScreenShowSpaceInvaderTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -10925,7 +10925,7 @@ def ScrollScreenShowWormsTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10936,7 +10936,7 @@ def ScrollScreenShowWormsTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
       
@@ -10955,7 +10955,7 @@ def ScrollScreenShowPacTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10967,7 +10967,7 @@ def ScrollScreenShowPacTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
       
@@ -10987,7 +10987,7 @@ def ScrollScreenShowLittleShipTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -10997,7 +10997,7 @@ def ScrollScreenShowLittleShipTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
       
@@ -11016,7 +11016,7 @@ def ScrollScreenShowBigShipTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -11026,7 +11026,7 @@ def ScrollScreenShowBigShipTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
       
@@ -11053,7 +11053,7 @@ def ScrollScreenShowTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -11064,7 +11064,7 @@ def ScrollScreenShowTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -11072,7 +11072,7 @@ def ScrollScreenShowTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[7]
       ScreenCap.insert(0,EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -11083,7 +11083,7 @@ def ScrollScreenShowTime(direction,speed):
     for x in range(0,8):
       del ScreenCap[-1]
       ScreenCap.insert(0,Buffer[7-x])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
 
@@ -11103,7 +11103,7 @@ def ScrollScreen(direction,speed):
     for x in range(0,8):
       del ScreenCap[0]
       ScreenCap.append(EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
     
@@ -11111,7 +11111,7 @@ def ScrollScreen(direction,speed):
     for x in range(0,8):
       del ScreenCap[7]
       ScreenCap.insert(0,EmptyCap[0])
-      unicorn.set_pixels(ScreenCap)
+      unicorn.shade_pixels(ScreenCap)
       unicorn.show()
       time.sleep(speed)
   
